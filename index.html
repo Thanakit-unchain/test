@@ -1,8 +1,33 @@
-<button id="btn">SEND NOTIFICATION</button>
 <script>
+    import { getMessaging } from "firebase/messaging/sw";
+    import { initializeApp } from "firebase/app";
+    import { getMessaging, onMessage } from "firebase/messaging";
+
+    // Your web app's Firebase configuration
+    const firebaseConfig = {
+        apiKey: "AIzaSyAj6lamU9O-hds-uelCbfiDVSUmSaLxvvc",
+        authDomain: "myproject-b40b9.firebaseapp.com",
+        projectId: "myproject-b40b9",
+        storageBucket: "myproject-b40b9.firebasestorage.app",
+        messagingSenderId: "887354787020",
+        appId: "1:887354787020:web:562186b4730490212f6e69"
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+
+    const messaging = getMessaging();
+    onMessage(messaging, (payload) => {
+        console.log('Message received. ', payload);
+        Notification.postMessage('Message received. ', payload);
+    });
+
+    // Button
     var btn = document.getElementById('btn')
 
     btn.addEventListener('click', function () {
         Notification.postMessage('Hello');
     });
 </script>
+
+<button id="btn">SEND NOTIFICATION</button>
