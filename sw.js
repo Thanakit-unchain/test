@@ -1,8 +1,11 @@
-import { getMessaging as sw_getMessaging, onBackgroundMessage } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-messaging-sw.js";
+importScripts('https://www.gstatic.com/firebasejs/10.13.2/firebase-app-compat.js');
+importScripts('https://www.gstatic.com/firebasejs/10.13.2/firebase-messaging-compat.js');
 
-const sw_messaging = sw_getMessaging(app);
-onBackgroundMessage(sw_messaging, (payload) => {
-    console.log('[firebase-messaging-sw.js] Received background message ', payload);
+messaging.onBackgroundMessage((payload) => {
+    console.log(
+        '[firebase-messaging-sw.js] Received background message ',
+        payload
+    );
     // Customize notification here
     const notificationTitle = 'Background Message Title';
     const notificationOptions = {
@@ -11,6 +14,5 @@ onBackgroundMessage(sw_messaging, (payload) => {
     };
 
     Notification.postMessage('Message received. ', payload);
-    self.registration.showNotification(notificationTitle,
-        notificationOptions);
+    self.registration.showNotification(notificationTitle, notificationOptions);
 });
