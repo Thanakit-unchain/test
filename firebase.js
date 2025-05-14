@@ -27,8 +27,8 @@ export default function initFirebase() {
         Notification.postMessage('Message received. ', payload);
     });
 
-    const sw_getMessaging = getMessaging(app);
-    onBackgroundMessage(sw_getMessaging, (payload) => {
+    const sw_messaging = sw_getMessaging(app);
+    onBackgroundMessage(sw_messaging, (payload) => {
         console.log('[firebase-messaging-sw.js] Received background message ', payload);
         // Customize notification here
         const notificationTitle = 'Background Message Title';
