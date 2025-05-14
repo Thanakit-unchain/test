@@ -3,7 +3,7 @@ import { getMessaging, onMessage } from "https://www.gstatic.com/firebasejs/9.4.
 
 const dotenv = require('dotenv');
 
-export function initFirebase() {
+export default function initFirebase() {
     dotenv.config()
 
     // Your web app's Firebase configuration
