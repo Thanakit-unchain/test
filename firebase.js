@@ -30,8 +30,8 @@ export default function initFirebase() {
     const registerServiceWorker = async () => {
         if ("serviceWorker" in navigator) {
             try {
-                const registration = await navigator.serviceWorker.register("/sw.js", {
-                    scope: "/",
+                const registration = await navigator.serviceWorker.register("/test/sw.js", {
+                    scope: "/test/",
                 });
                 if (registration.installing) {
                     console.log("Service worker installing");
