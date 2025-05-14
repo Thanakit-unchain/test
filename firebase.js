@@ -1,5 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-app.js";
-import { getMessaging, onMessage, onBackgroundMessage } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-messaging.js";
+import { getMessaging, onMessage } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-messaging.js";
 import { getMessaging as sw_getMessaging, onBackgroundMessage } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-messaging-sw.js";
 
 // import dotenv from "dotenv";
