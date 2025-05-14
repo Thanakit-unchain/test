@@ -1,6 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-app.js";
 import { getMessaging, onMessage } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-messaging.js";
-import { getMessaging as sw_getMessaging, onBackgroundMessage } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-messaging-sw.js";
 
 // import dotenv from "dotenv";
 
@@ -27,18 +26,25 @@ export default function initFirebase() {
         Notification.postMessage('Message received. ', payload);
     });
 
-    const sw_messaging = sw_getMessaging(app);
-    onBackgroundMessage(sw_messaging, (payload) => {
-        console.log('[firebase-messaging-sw.js] Received background message ', payload);
-        // Customize notification here
-        const notificationTitle = 'Background Message Title';
-        const notificationOptions = {
-            body: 'Background Message body.',
-            icon: '/firebase-logo.png'
-        };
 
-        Notification.postMessage('Message received. ', payload);
-        self.registration.showNotification(notificationTitle,
-            notificationOptions);
-    });
+    const registerServiceWorker = async () => {
+        if ("serviceWorker" in navigator) {
+            try {
+                const registration = await navigator.serviceWorker.register("/sw.js", {
+                    scope: "/",
+                });
+                if (registration.installing) {
+                    console.log("Service worker installing");
+                } else if (registration.waiting) {
+                    console.log("Service worker installed");
+                } else if (registration.active) {
+                    console.log("Service worker active");
+                }
+            } catch (error) {
+                console.error(`Registration failed with ${error}`);
+            }
+        }
+    };
+
+    registerServiceWorker();
 }
