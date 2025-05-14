@@ -27,24 +27,24 @@ export default function initFirebase() {
     });
 
 
-    const registerServiceWorker = async () => {
-        if ("serviceWorker" in navigator) {
-            try {
-                const registration = await navigator.serviceWorker.register("/test/sw.js", {
-                    scope: "/test/",
-                });
-                if (registration.installing) {
-                    console.log("Service worker installing");
-                } else if (registration.waiting) {
-                    console.log("Service worker installed");
-                } else if (registration.active) {
-                    console.log("Service worker active");
-                }
-            } catch (error) {
-                console.error(`Registration failed with ${error}`);
-            }
-        }
-    };
+    // const registerServiceWorker = async () => {
+    //     if ("serviceWorker" in navigator) {
+    //         try {
+    //             const registration = await navigator.serviceWorker.register("/test/sw.js", {
+    //                 scope: "/test/",
+    //             });
+    //             if (registration.installing) {
+    //                 console.log("Service worker installing");
+    //             } else if (registration.waiting) {
+    //                 console.log("Service worker installed");
+    //             } else if (registration.active) {
+    //                 console.log("Service worker active");
+    //             }
+    //         } catch (error) {
+    //             console.error(`Registration failed with ${error}`);
+    //         }
+    //     }
+    // };
 
-    registerServiceWorker();
+    // registerServiceWorker();
 }
