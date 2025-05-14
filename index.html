@@ -1,8 +1,7 @@
 <script type="module">
+    import 'dotenv/config.js';
     import { initializeApp } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-app.js";
     import { getMessaging, onMessage } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-messaging.js";
-
-    require('dotenv').config()
 
     // Your web app's Firebase configuration
     const firebaseConfig = {
