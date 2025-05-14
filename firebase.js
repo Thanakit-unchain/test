@@ -1,5 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-app.js";
-import { getMessaging, onMessage } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-messaging.js";
+import { getMessaging, onMessage, onBackgroundMessage } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-messaging.js";
 // import dotenv from "dotenv";
 
 export default function initFirebase() {
@@ -22,5 +22,19 @@ export default function initFirebase() {
     onMessage(messaging, (payload) => {
         console.log('Message received. ', payload);
         Notification.postMessage('Message received. ', payload);
+    });
+
+    onBackgroundMessage(messaging, (payload) => {
+        console.log('[firebase-messaging-sw.js] Received background message ', payload);
+        // Customize notification here
+        const notificationTitle = 'Background Message Title';
+        const notificationOptions = {
+            body: 'Background Message body.',
+            icon: '/firebase-logo.png'
+        };
+
+        Notification.postMessage('Message received. ', payload);
+        self.registration.showNotification(notificationTitle,
+            notificationOptions);
     });
 }
